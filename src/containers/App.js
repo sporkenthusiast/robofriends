@@ -22,14 +22,17 @@ class App extends Component {
     onSearchChange = (event) => {
         this.setState({searchfield: event.target.value});
     }
+
     render() {
-        const filteredRobots = this.state.robots.filter(robots => {
-            return robots.name.toLocaleLowerCase().includes(this.state.searchfield.toLocaleLowerCase());
+        const { robots, searchfield } = this.state;
+        const filteredRobots = robots.filter(robot => {
+            return robot.name.toLocaleLowerCase().includes(searchfield.toLocaleLowerCase());
         });
-        if(this.state.robots.length === 0) {
-            return <h1 className='f2'>Loading...</h1>
-        } else {
-            return(
+        
+        return ! robots.length ? 
+            <h1 className='f2'>Loading...</h1>
+            : 
+            (
                 <div className='tc'>
                     <h1 className='f2'>RoboFriends</h1>
                     <Searchbox searchChange={this.onSearchChange} />
@@ -38,7 +41,6 @@ class App extends Component {
                     </Scroll>
                 </div>
             );
-        }
     }
 }
 
