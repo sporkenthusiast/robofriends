@@ -8,7 +8,7 @@ class Cardlist extends Component {
         return(
             <div>
                 { 
-                    robots.map((bot, i) => {
+                    robots.map((users, i) => {
                         return (
                             <Card
                                 key={i}
